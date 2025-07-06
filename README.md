@@ -18,6 +18,12 @@ Ovaj repozitorijum sadrži početni kod za edukativnu mobilnu aplikaciju namenje
 
 Admin panel je uprošćena React aplikacija bez build procesa. Dovoljno je otvoriti `admin/index.html` u pregledaču. Pre toga u `admin/app.js` upisati Firebase konfiguraciju i autorizovati se kao profesor.
 
+## Pokretanje web verzije
+
+1. U direktorijumu `mobile/ProfaZaOsnovce` pokrenuti `npm run build:web` kako bi se pripremila statička verzija aplikacije u folderu `dist`.
+2. Na vrhu repozitorijuma izvršiti `npm install` da se instalira Express server.
+3. Pokrenuti `npm start` i otvoriti `http://localhost:3000` u pregledaču. Admin panel je dostupan na `http://localhost:3000/admin`.
+
 ## Napomena
 
 Kod predstavlja osnovu i služi kao polazna tačka. Za kompletnu funkcionalnost potrebno je dodatno razviti logiku na klijentu i u Firestore-u, kao i proširiti dizajn prema sopstvenim potrebama.
