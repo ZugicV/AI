@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="sr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Jednorog | Zakazivanje časova</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header class="hero">
+    <div class="hero__content">
+      <p class="eyebrow">AI Jednorog</p>
+      <h1>Zakazivanje privatnih časova</h1>
+      <p class="lede">
+        Izaberite da li ste učenik ili profesor i upravljajte terminima na jednom mestu.
+      </p>
+      <div class="role-choices" id="role-choice">
+        <button class="pill" data-role="student">Ja sam učenik</button>
+        <button class="pill pill--secondary" data-role="professor">Ja sam profesor</button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="student-view" class="panel hidden">
+      <div class="panel__header">
+        <div>
+          <p class="eyebrow">Učenik</p>
+          <h2>Pronađite termin i rezervišite čas</h2>
+        </div>
+        <p class="hint">Kliknite na profesora sa leve strane, a zatim izaberite slobodan termin u kalendaru.</p>
+      </div>
+
+      <div class="layout">
+        <aside class="sidebar">
+          <h3>Profesori</h3>
+          <ul id="professor-list" class="professor-list"></ul>
+        </aside>
+
+        <section class="calendar">
+          <header class="calendar__header">
+            <div>
+              <p class="eyebrow">Kalendar termina</p>
+              <h3 id="active-professor-name">&nbsp;</h3>
+            </div>
+            <button class="ghost" id="back-to-role">Promeni ulogu</button>
+          </header>
+          <div class="calendar__legend">
+            <span class="legend legend--free">Slobodan</span>
+            <span class="legend legend--mine">Vaš termin</span>
+            <span class="legend legend--busy">Zauzeto</span>
+          </div>
+          <div id="calendar-grid" class="calendar__grid"></div>
+        </section>
+      </div>
+    </section>
+
+    <section id="professor-view" class="panel hidden">
+      <div class="panel__header">
+        <div>
+          <p class="eyebrow">Profesor</p>
+          <h2>Prijavite se da vidite svoje termine</h2>
+        </div>
+        <button class="ghost" id="back-to-role-professor">Promeni ulogu</button>
+      </div>
+
+      <div class="card" id="login-card">
+        <form id="login-form" class="form-grid">
+          <label>
+            <span>Izaberite profesora</span>
+            <select id="login-professor" required></select>
+          </label>
+          <label>
+            <span>Lozinka</span>
+            <input type="password" id="login-password" placeholder="Lozinka" required />
+          </label>
+          <button type="submit" class="pill">Prijava</button>
+          <p class="hint">Test lozinke su jednostavne (npr. "ana123").</p>
+        </form>
+      </div>
+
+      <div class="card hidden" id="professor-dashboard">
+        <div class="dashboard__header">
+          <div>
+            <p class="eyebrow">Pregled termina</p>
+            <h3 id="dashboard-title">&nbsp;</h3>
+          </div>
+          <button class="ghost" id="logout">Odjava</button>
+        </div>
+        <div id="booking-table" class="table"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal__content">
+      <div class="modal__header">
+        <div>
+          <p class="eyebrow">Rezervacija termina</p>
+          <h3 id="modal-title">Izaberite termin</h3>
+          <p id="modal-slot-summary" class="hint"></p>
+        </div>
+        <button class="ghost" id="close-modal" aria-label="Zatvori">✕</button>
+      </div>
+      <form id="booking-form" class="form-grid">
+        <label>
+          <span>Ime i prezime</span>
+          <input type="text" id="student-name" placeholder="Vaše ime" required />
+        </label>
+        <label>
+          <span>Razred</span>
+          <select id="student-grade" required>
+            <option value="">Izaberite</option>
+            <option value="5">5. razred</option>
+            <option value="6">6. razred</option>
+            <option value="7">7. razred</option>
+            <option value="8">8. razred</option>
+            <option value="srednja">Srednja škola</option>
+          </select>
+        </label>
+        <label>
+          <span>Telefon</span>
+          <input type="tel" id="student-phone" placeholder="06x xxx xxxx" required />
+        </label>
+        <button type="submit" class="pill">Zakaži termin</button>
+      </form>
+    </div>
+  </div>
+
+  <template id="slot-template">
+    <button class="slot" type="button"></button>
+  </template>
+
+  <script src="app.js"></script>
+</body>
+</html>
